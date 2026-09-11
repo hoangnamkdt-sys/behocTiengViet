@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Học Tiếng Việt Lớp 1 - Cùng Thỏ Học Chữ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Nunito', sans-serif;
+      user-select: none;
+    }
+
+    body {
+      background-color: #eaf7f2;
+      color: #2c3e50;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 10px;
+    }
+
+    .app-container {
+      width: 100%;
+      max-width: 480px;
+      background: #eaf7f2;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      padding-bottom: 30px;
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 5px;
+    }
+
+    .btn-exit {
+      background: #ffffff;
+      border: 1.5px solid #e0e0e0;
+      color: #ff5252;
+      padding: 6px 12px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .top-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-settings {
+      background: #ffffff;
+      border: 1.5px solid #108ee9;
+      color: #108ee9;
+      padding: 6px 12px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .speed-btn {
+      color: #7f8c8d;
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .lesson-selector-container {
+      margin: 5px 0 15px;
+    }
+
+    .lesson-select {
+      width: 100%;
+      background: #ffffff;
+      border: 2px solid #b7eb8f;
+      padding: 10px 14px;
+      border-radius: 16px;
+      font-weight: 700;
+      font-size: 15px;
+      color: #27ae60;
+      cursor: pointer;
+      outline: none;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .lesson-select:focus {
+      border-color: #27ae60;
+    }
+
+    .header-info {
+      margin-top: 5px;
+    }
+
+    .subtitle {
+      color: #7f8c8d;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      position: relative;
+    }
+
+    .main-title {
+      color: #1b4d3e;
+      font-size: 26px;
+      font-weight: 900;
+      line-height: 1.2;
+      max-width: 75%;
+    }
+
+    .mascot {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    }
+
+    .title-divider {
+      height: 3px;
+      background: #f39c12;
+      border-radius: 2px;
+      margin: 8px 0 18px 0;
+      width: 80%;
+    }
+
+    .big-letter-card {
+      background: #ffffff;
+      border: 3px solid #b8e2d8;
+      border-radius: 24px;
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+      cursor: pointer;
+    }
+
+    .big-letter-text {
+      font-size: 56px;
+      font-weight: 900;
+      color: #2c3e50;
+      letter-spacing: 4px;
+    }
+
+    .section-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #108ee9;
+      color: white;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      cursor: pointer;
+    }
+
+    .section-badge span.icon {
+      background: rgba(255,255,255,0.25);
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-size: 11px;
+    }
+
+    .phonics-section {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+
+    .spelling-card {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .left-target-word {
+      width: 75px;
+      min-width: 75px;
+      height: 70px;
+      background: #91caff;
+      color: white;
+      border-radius: 18px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 26px;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 3px 0 #69b1ff;
+      transition: transform 0.1s;
+    }
+
+    .left-target-word:active {
+      transform: translateY(2px);
+    }
+
+    .right-breakdown-box {
+      flex: 1;
+      background: #ffffff;
+      border: 2px solid #d9f7be;
+      border-radius: 20px;
+      padding: 10px 45px 10px 12px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      min-height: 70px;
+      cursor: pointer;
+    }
+
+    .breakdown-row {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      flex-wrap: wrap;
+    }
+
+    .right-icon-group {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .word-icon {
+      font-size: 22px;
+    }
+
+    .speaker-icon {
+      font-size: 16px;
+      color: #8c8c8c;
+    }
+
+    .capsule {
+      padding: 5px 10px;
+      border-radius: 16px;
+      color: white;
+      font-size: 16px;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 0 rgba(0,0,0,0.1);
+    }
+
+    .capsule.orange { background: #ff9c6e; }
+    .capsule.blue   { background: #4096ff; }
+    .capsule.green  { background: #73d13d; }
+    .capsule.purple { background: #9254de; }
+    .capsule.red    { background: #ff4d4f; }
+
+    .example-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 25px;
+    }
+
+    .word-card {
+      background: #e6f7ff;
+      border: 2.5px solid #91caff;
+      border-radius: 18px;
+      padding: 14px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 20px;
+      font-weight: 800;
+      color: #1677ff;
+      cursor: pointer;
+      box-shadow: 0 3px 0 #bae0ff;
+      transition: all 0.1s;
+      text-align: center;
+    }
+
+    .word-card:active {
+      transform: translateY(2px);
+      box-shadow: none;
+    }
+
+    .alphabet-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 15px;
+    }
+
+    .alphabet-card {
+      background: #ffffff;
+      border: 2px solid #b7eb8f;
+      border-radius: 16px;
+      padding: 15px 5px;
+      text-align: center;
+      font-size: 26px;
+      font-weight: 900;
+      color: #27ae60;
+      cursor: pointer;
+      box-shadow: 0 3px 0 #95de64;
+    }
+
+    .alphabet-card:active {
+      transform: translateY(2px);
+      box-shadow: none;
+    }
+
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      padding: 15px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: #ffffff;
+      width: 100%;
+      max-width: 440px;
+      max-height: 85vh;
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    .modal-header {
+      background: #27ae60;
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-header h2 {
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .modal-close {
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .modal-body {
+      padding: 20px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .setting-group-title {
+      font-weight: 800;
+      font-size: 16px;
+      color: #1b4d3e;
+      margin-bottom: 5px;
+    }
+
+    .mode-options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .mode-option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px;
+      border: 2px solid #e9ecef;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-weight: 700;
+    }
+
+    .mode-option.active {
+      border-color: #27ae60;
+      background: #f0fdf4;
+      color: #27ae60;
+    }
+
+    .mode-option input {
+      accent-color: #27ae60;
+      width: 18px;
+      height: 18px;
+    }
+
+    .nav-footer {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+      gap: 10px;
+    }
+
+    .nav-btn {
+      flex: 1;
+      padding: 12px;
+      border-radius: 16px;
+      border: none;
+      background: #27ae60;
+      color: white;
+      font-size: 16px;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 4px 0 #1e824c;
+      text-align: center;
+    }
+
+    .nav-btn:disabled {
+      background: #d9d9d9;
+      box-shadow: none;
+      cursor: not-allowed;
+    }
+
+    .speaking {
+      animation: pulse 0.6s infinite alternate;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.08); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-container">
+
+    <div class="top-bar">
+      <button class="btn-exit" onclick="alert('Thoát bài học')">
+        <span>🚪</span> Thoát
+      </button>
+      <div class="top-controls">
+        <button class="btn-settings" onclick="openSettingsModal()">
+          ⚙️ Cài đặt
+        </button>
+        <span class="speed-btn" id="speedToggle" onclick="toggleSpeed()">1.0x</span>
+      </div>
+    </div>
+
+    <div class="lesson-selector-container">
+      <select class="lesson-select" id="lessonSelect" onchange="selectLessonFromDropdown(this.value)"></select>
+    </div>
+
+    <div id="mainContent"></div>
+
+    <div class="nav-footer">
+      <button class="nav-btn" id="prevBtn" onclick="changeLesson(-1)">‹ Bài trước</button>
+      <button class="nav-btn" id="nextBtn" onclick="changeLesson(1)">Bài tiếp ›</button>
+    </div>
+
+  </div>
+
+  <div class="modal-overlay" id="settingsModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>⚙️ Cài Đặt Hiển Thị Bài Học</h2>
+        <button class="modal-close" onclick="closeSettingsModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="setting-group-title">Chọn Chế Độ Hiển Thị:</div>
+        <div class="mode-options">
+          <label class="mode-option" id="opt-all" onclick="setMode('all')">
+            <input type="radio" name="displayMode" value="all">
+            <span>📚 Tất cả (Đánh vần & Tập đọc)</span>
+          </label>
+          <label class="mode-option" id="opt-spelling" onclick="setMode('spelling')">
+            <input type="radio" name="displayMode" value="spelling">
+            <span>🔤 Chỉ hiển thị Đánh vần</span>
+          </label>
+          <label class="mode-option" id="opt-reading" onclick="setMode('reading')">
+            <input type="radio" name="displayMode" value="reading">
+            <span>📖 Chỉ hiển thị Tập đọc (Mẫu câu/Ví dụ)</span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const alphabetList = [
+      'A a', 'Ă ă', 'Â â', 'B b', 'C c', 'D d', 'Đ đ',
+      'E e', 'Ê ê', 'G g', 'H h', 'I i', 'K k', 'L l',
+      'M m', 'N n', 'O o', 'Ô ô', 'Ơ ơ', 'P p', 'Q q',
+      'R r', 'S s', 'T t', 'U u', 'Ư ư', 'V v', 'X x', 'Y y',
+      'Ch ch', 'Gh gh', 'Gi gi', 'Kh kh', 'Ng ng', 'Ngh ngh', 'Nh nh', 'Ph ph', 'Th th', 'Tr tr'
+    ];
+
+    const vietnamesePhonetics = {
+      'a': 'a', 'ă': 'á', 'â': 'ớ', 'Â': 'ớ', 'Â â': 'ớ',
+      'ăn': 'ăn', 'ân': 'ân', 'b': 'bờ', 'c': 'cờ', 'ch': 'chờ', 'd': 'dờ', 'đ': 'đờ',
+      'e': 'e', 'ê': 'ê', 'g': 'gờ', 'gh': 'ghờ', 'gi': 'giờ', 'h': 'hờ', 'i': 'i', 'k': 'ca', 'kh': 'khờ', 'l': 'lờ',
+      'm': 'mờ', 'n': 'nờ', 'ng': 'ngờ', 'ngh': 'nghờ', 'nh': 'nhờ', 'o': 'o', 'ô': 'ô', 'ơ': 'ơ', 'p': 'pờ', 'ph': 'phờ', 'q': 'quy',
+      'r': 'rờ', 's': 'sờ', 't': 'tờ', 'th': 'thờ', 'tr': 'trờ', 'u': 'u', 'ư': 'ư', 'v': 'vờ', 'x': 'xờ', 'y': 'i'
+    };
+
+    const lessonsData = [
+      { id: 1, title: "Bài tổng hợp: Bảng chữ cái", subtitle: "HỌC CÙNG THỎ · Tổng quan", type: "alphabet" },
+      { 
+        id: 2, title: "Bài 1: Học chữ A a", subtitle: "HỌC CÙNG THỎ · Bài 1", type: "phonics", bigLetter: "A a", 
+        spelling: [
+          { target: "a", speechText: "a", breakdown: [{ text: "a", color: "blue" }], icon: "🅰️" },
+          { target: "à", speechText: "a huyền à", breakdown: [{ text: "a", color: "blue" }, { text: "huyền", color: "purple" }], result: { text: "à", color: "red" }, icon: "😮" },
+          { target: "á", speechText: "a sắc á", breakdown: [{ text: "a", color: "blue" }, { text: "sắc", color: "purple" }], result: { text: "á", color: "red" }, icon: "🔊" },
+          { target: "ba", speechText: "bờ a ba", breakdown: [{ text: "bờ", color: "orange" }, { text: "a", color: "blue" }], result: { text: "ba", color: "green" }, icon: "👨" },
+          { target: "cá", speechText: "cờ a ca sắc cá", breakdown: [{ text: "cờ", color: "orange" }, { text: "a", color: "blue" }, { text: "sắc", color: "purple" }], result: { text: "cá", color: "red" }, icon: "🐟" }
+        ], 
+        examples: ["Ba có cá.", "Bé ăn cam.", "Cánh hoa đẹp."] 
+      },
+      { 
+        id: 3, title: "Bài 2: Học chữ Ă ă", subtitle: "HỌC CÙNG THỎ · Bài 2", type: "phonics", bigLetter: "Ă ă", 
+        spelling: [
+          { target: "ăn", speechText: "ă nờ ăn", breakdown: [{ text: "ă", color: "orange" }, { text: "nờ", color: "blue" }], result: { text: "ăn", color: "green" }, icon: "🥣" },
+          { target: "bắn", speechText: "bờ ăn băn sắc bắn", breakdown: [{ text: "bờ", color: "orange" }, { text: "ăn", color: "blue" }, { text: "sắc", color: "purple" }], result: { text: "bắn", color: "red" }, icon: "🎯" },
+          { target: "cắn", speechText: "cờ ăn căn sắc cắn", breakdown: [{ text: "cờ", color: "orange" }, { text: "ăn", color: "blue" }, { text: "sắc", color: "purple" }], result: { text: "cắn", color: "red" }, icon: "🍎" },
+          { target: "chăn", speechText: "chờ ăn chăn", breakdown: [{ text: "chờ", color: "orange" }, { text: "ăn", color: "blue" }], result: { text: "chăn", color: "green" }, icon: "🛋️" },
+          { target: "mắn", speechText: "mờ ăn măn sắc mắn", breakdown: [{ text: "mờ", color: "orange" }, { text: "ăn", color: "blue" }, { text: "sắc", color: "purple" }], result: { text: "mắn", color: "red" }, icon: "🍀" }
+        ], 
+        examples: ["Bé ăn bánh.", "Mẹ bế bé.", "Cá cắn mồi."] 
+      },
+      { 
+        id: 4, title: "Bài 3: Học chữ Â â", subtitle: "HỌC CÙNG THỎ · Bài 3", type: "phonics", bigLetter: "Â â", 
+        spelling: [
+          { target: "ân", speechText: "â nờ ân", breakdown: [{ text: "â", color: "orange" }, { text: "nờ", color: "blue" }], result: { text: "ân", color: "green" }, icon: "❤️" },
+          { target: "cần", speechText: "cờ ân cân huyền cần", breakdown: [{ text: "cờ", color: "orange" }, { text: "ân", color: "blue" }, { text: "huyền", color: "purple" }], result: { text: "cần", color: "red" }, icon: "🎣" },
+          { target: "cân", speechText: "cờ ân cân", breakdown: [{ text: "cờ", color: "orange" }, { text: "ân", color: "blue" }], result: { text: "cân", color: "green" }, icon: "⚖️" },
+          { target: "sân", speechText: "sờ ân sân", breakdown: [{ text: "sờ", color: "orange" }, { text: "ân", color: "blue" }], result: { text: "sân", color: "green" }, icon: "🏡" },
+          { target: "chân", speechText: "chờ ân chân", breakdown: [{ text: "chờ", color: "orange" }, { text: "ân", color: "blue" }], result: { text: "chân", color: "green" }, icon: "🦶" }
+        ], 
+        examples: ["Bé cần cân.", "Ba cân cá.", "Mẹ cần bé."] 
+      },
+      { 
+        id: 5, title: "Bài 4: Học chữ B b", subtitle: "HỌC CÙNG THỎ · Bài 4", type: "phonics", bigLetter: "B b", 
+        spelling: [
+          { target: "ba", speechText: "bờ a ba", breakdown: [{ text: "bờ", color: "orange" }, { text: "a", color: "blue" }], result: { text: "ba", color: "green" }, icon: "👨" },
+          { target: "bà", speechText: "bờ a ba huyền bà", breakdown: [{ text: "bờ", color: "orange" }, { text: "a", color: "blue" }, { text: "huyền", color: "purple" }], result: { text: "bà", color: "red" }, icon: "👵" },
+          { target: "bé", speechText: "bờ e be sắc bé", breakdown: [{ text: "bờ", color: "orange" }, { text: "e", color: "blue" }, { text: "sắc", color: "purple" }], result: { text: "bé", color: "red" }, icon: "👶" },
+          { target: "bò", speechText: "bờ o bo huyền bò", breakdown: [{ text: "bờ", color: "orange" }, { text: "o", color: "blue" }, { text: "huyền", color: "purple" }], result: { text: "bò", color: "red" }, icon: "🐄" },
+          { target: "bí", speechText: "bờ i bi sắc bí", breakdown: [{ text: "bờ", color: "orange" }, { text: "i", color: "blue" }, { text: "sắc", color: "purple" }], result: { text: "bí", color: "red" }, icon: "🎃" }
+        ], 
+        examples: ["Ba bế bé.", "Bé có bi.", "Bà bán bí."] 
+      },
+      { 
+        id: 6, title: "Bài 5: Học chữ C c", subtitle: "HỌC CÙNG THỎ · Bài 5", type: "phonics", bigLetter: "C c", 
+        spelling: [
+          { target: "ca", speechText: "cờ a ca", breakdown: [{ text: "cờ", color: "orange" }, { text: "a", color: "blue" }], result: { text: "ca", color: "green" }, icon: "🥤" },
+          { target: "cá", speechText: "cờ a ca sắc cá", breakdown: [{ text: "cờ", color: "orange" }, { text: "a", color: "blue" }, { text: "sắc", color: "purple" }], result: { text: "cá", color: "red" }, icon: "🐟" },
+          { target: "cò", speechText: "cờ o co huyền cò", breakdown: [{ text: "cờ", color: "orange" }, { text: "o", color: "blue" }, { text: "huyền", color: "purple" }], result: { text: "cò", color: "red" }, icon: "🦩" },
+          { target: "cỏ", speechText: "cờ o co hỏi cỏ", breakdown: [{ text: "cờ", color: "orange" }, { text: "o", color: "blue" }, { text: "hỏi", color: "purple" }], result: { text: "cỏ", color: "red" }, icon: "🌿" },
+          { target: "cô", speechText: "cờ ô cô", breakdown: [{ text: "cờ", color: "orange" }, { text: "ô", color: "blue" }], result: { text: "cô", color: "green" }, icon: "👩‍🏫" }
+        ], 
+        examples: ["Cá bơi.", "Mẹ mua cam.", "Bé cầm ca."] 
+      },
+      { 
+        id: 7, title: "Bài 6: Học chữ D d", subtitle: "HỌC CÙNG THỎ · Bài 6", type: "phonics", bigLetter: "D d", 
+        spelling: [
+          { target: "da", speechText: "dờ a da", breakdown: [{ text: "dờ", color: "orange" }, { text: "a", color: "blue" }], result: { text: "da", color: "green" }, icon: "✋" },
+          { target: "dù", speechText: "dờ u du huyền dù", breakdown: [{ text: "dờ", color: "orange" }, { text: "u", color: "blue" }, { text: "huyền", color: "purple" }], result: { text: "dù", color: "red" }, icon: "☂️" },
+          { target: "dê", speechText: "dờ ê dê", breakdown: [{ text: "dờ", color: "orange" }, { text: "ê", color: "blue" }], result: { text: "dê", color: "green" }, icon: "🐐" },
+          { target: "dơ", speechText: "dờ ơ dơ", breakdown: [{ text: "dờ", color: "orange" }, { text: "ơ", color: "blue" }], result: { text: "dơ", color: "green" }, icon: "🧹" },
+          { target: "dì", speechText: "dờ i di huyền dì", breakdown: [{ text: "dờ", color: "orange" }, { text: "i", color: "blue" }, { text: "huyền", color: "purple" }], result: { text: "dì", color: "red" }, icon: "👩" }
+        ], 
+        examples: ["Bé đi bộ.", "Da bé mềm.", "Dì cho bé đồ chơi."] 
+      },
+      { 
+        id: 8, title: "Bài 7: Học chữ Đ đ", subtitle: "HỌC CÙNG THỎ · Bài 7", type: "phonics", bigLetter: "Đ đ", 
+        spelling: [
+          { target: "đi", speechText: "đờ i đi", breakdown: [{ text: "đờ", color: "orange" }, { text: "i", color: "blue" }], result: { text: "đi", color: "green" }, icon: "🚶" },
+          { target: "đá", speechText: "đờ a đa sắc đá", breakdown: [{ text: "đờ", color: "orange" }, { text: "a", color: "blue" }, { text: "sắc", color: "purple" }], result: { text: "đá", color: "red" }, icon: "🧊" },
+          { target: "đỏ", speechText: "đờ o đo hỏi đỏ", breakdown: [{ text: "đờ", color: "orange" }, { text: "o", color: "blue" }, { text: "hỏi", color: "purple" }], result: { text: "đỏ", color: "red" }, icon: "🔴" },
+          { target: "đèn", speechText: "đờ en đen huyền đèn", breakdown: [{ text: "đờ", color: "orange" }, { text: "en", color: "blue" }, { text: "huyền", color: "purple" }], result: { text: "đèn", color: "red" }, icon: "💡" },
+          { target: "đỗ", speechText: "đờ ô đô ngã đỗ", breakdown: [{ text: "đờ", color: "orange" }, { text: "ô", color: "blue" }, { text: "ngã", color: "purple" }], result: { text: "đỗ", color: "red" }, icon: "🫘" }
+        ], 
+        examples: ["Bé đi đá bóng.", "Đá ở đây.", "Đèn đỏ sáng."] 
+      },
+      { 
+        id: 9, title: "Bài 8: Học chữ E e", subtitle: "HỌC CÙNG THỎ · Bài 8", type: "phonics", bigLetter: "E e", 
+        spelling: [
+          { target: "em", speechText: "e mờ em", breakdown: [{ text: "e", color: "blue" }, { text: "mờ", color: "orange" }], result: { text: "em", color: "green" }, icon: "👧" },
+          { target: "xe", speechText: "xờ e xe", breakdown: [{ text: "xờ", color: "orange" }, { text: "e", color: "blue" }], result: { text: "xe", color: "green" }, icon: "🚗" },
+          { target: "me", speechText: "mờ e me", breakdown: [{ text: "mờ", color: "orange" }, { text: "e", color: "blue" }], result: { text: "me", color: "green" }, icon: "🥑" },
+          { target: "mẹ", speechText: "mờ e me nặng mẹ", breakdown: [{ text: "mờ", color: "orange" }, { text: "e", color: "blue" }, { text: "nặng", color: "purple" }], result: { text: "mẹ", color: "red" }, icon: "👩‍👦" },
+          { target: "ve", speechText: "vờ e ve", breakdown: [{ text: "vờ", color: "orange" }, { text: "e", color: "blue" }], result: { text: "ve", color: "green" }, icon: "🦗" }
+        ], 
+        examples: ["Bé xem xe.", "Em bé vui.", "Mẹ cho bé kem."] 
+      },
+      { 
+        id: 10, title: "Bài 9: Học chữ Ê ê", subtitle: "HỌC CÙNG THỎ · Bài 9", type: "phonics", bigLetter: "Ê ê", 
+        spelling: [
+          { target: "ê", speechText: "ê", breakdown: [{ text: "ê", color: "blue" }], icon: "🗣️" },
+          { target: "lê", speechText: "lờ ê lê", breakdown: [{ text: "lờ", color: "orange" }, { text: "ê", color: "blue" }], result: { text: "lê", color: "green" }, icon: "🍐" },
+          { target: "bế", speechText: "bờ ê bê sắc bế", breakdown: [{ text: "bờ", color: "orange" }, { text: "ê", color: "blue" }, { text: "sắc", color: "purple" }], result: { text: "bế", color: "red" }, icon: "🤱" },
+          { target: "ghế", speechText: "ghờ ê ghê sắc ghế", breakdown: [{ text: "ghờ", color: "orange" }, { text: "ê", color: "blue" }, { text: "sắc", color: "purple" }], result: { text: "ghế", color: "red" }, icon: "🪑" },
+          { target: "bê", speechText: "bờ ê bê", breakdown: [{ text: "bờ", color: "orange" }, { text: "ê", color: "blue" }], result: { text: "bê", color: "green" }, icon: "🐂" }
+        ], 
+        examples: ["Bé có ghế.", "Mẹ kê ghế.", "Bé ngồi ghế."] 
+      },
+      { 
+        id: 11, title: "Bài 10: Học chữ G g", subtitle: "HỌC CÙNG THỎ · Bài 10", type: "phonics", bigLetter: "G g", 
+        spelling: [
+          { target: "gà", speechText: "gờ a ga huyền gà", breakdown: [{ text: "gờ", color: "orange" }, { text: "a", color: "blue" }, { text: "huyền", color: "purple" }], result: { text: "gà", color: "red" }, icon: "🐔" },
+          { target: "gỗ", speechText: "gờ ô gô ngã gỗ", breakdown: [{ text: "gờ", color: "orange" }, { text: "ô", color: "blue" }, { text: "ngã", color: "purple" }], result: { text: "gỗ", color: "red" }, icon: "🪵" },
+          { target: "gấu", speechText: "gờ âu gâu sắc gấu", breakdown: [{ text: "gờ", color: "orange" }, { text: "âu", color: "blue" }, { text: "sắc", color: "purple" }], result: { text: "gấu", color: "red" }, icon: "🐻" },
+          { target: "gầy", speechText: "gờ ây gây huyền gầy", breakdown: [{ text: "gờ", color: "red" }, { text: "ây", color: "blue" },{ text: "huyền", color: "purple" },{ text: "gầy", color: "purple" }], icon: "🐥" },
+          { target: "gọt", speechText: "gờ ot got nặng gọt", breakdown: [{ text: "gờ", color: "orange" }, { text: "ot", color: "blue" }, { text: "nặng", color: "purple" }], result: { text: "gọt", color: "red" }, icon: "🔪" }
+        ], 
+        examples: ["Gà gáy.", "Bé gọi gà.", "Gấu có giỏ."] 
+      },
+      { 
+        id: 12, title: "Bài 11: Học chữ H h", subtitle: "HỌC CÙNG THỎ · Bài 11", type: "phonics", bigLetter: "H h", 
+        spelling: [
+          { target: "ha", speechText: "hờ a ha", breakdown: [{ text: "hờ", color: "orange" }, { text: "a", color: "blue" }], result: { text: "ha", color: "green" }, icon: "😄" },
+          { target: "hoa", speechText: "hờ oa hoa", breakdown: [{ text: "hờ", color: "orange" }, { text: "oa", color: "blue" }], result: { text: "hoa", color: "green" }, icon: "🌸" },
+          { target: "hổ", speechText: "hờ ô hô hỏi hổ", breakdown: [{ text: "hờ", color: "orange" }, { text: "ô", color: "blue" }, { text: "hỏi", color: "purple" }], result: { text: "hổ", color: "red" }, icon: "🐯" },
+          { target: "hồ", speechText: "hờ ô hô huyền hồ", breakdown: [{ text: "hờ", color: "orange" }, { text: "ô", color: "blue" }, { text: "huyền", color: "purple" }], result: { text: "hồ", color: "red" }, icon: "🏞️" },
+          { target: "hát", speechText: "hờ át hát sắc hát", breakdown: [{ text: "hờ", color: "orange" }, { text: "át", color: "blue" }, { text: "hát", color: "blue" },{ text: "sắc", color: "purple" }], result: { text: "hát", color: "red" }, icon: "🎤" }
+        ], 
+        examples: ["Hoa hồng đẹp.", "Bé hái hoa.", "Hà có hoa."] 
+      },
+      { 
+        id: 13, title: "Bài 12: Học chữ I i", subtitle: "HỌC CÙNG THỎ · Bài 12", type: "phonics", bigLetter: "I i", 
+        spelling: [
+          { target: "bi", speechText: "bờ i bi", breakdown: [{ text: "bờ", color: "orange" }, { text: "i", color: "blue" }], result: { text: "bi", color: "green" }, icon: "🔮" },
+          { target: "khí", speechText: "khờ i khi sắc khí", breakdown: [{ text: "khờ", color: "orange" }, { text: "i", color: "blue" }, { text: "sắc", color: "purple" }], result: { text: "khí", color: "red" }, icon: "🎈" },
+          { target: "đi", speechText: "đờ i đi", breakdown: [{ text: "đờ", color: "orange" }, { text: "i", color: "blue" }], result: { text: "đi", color: "green" }, icon: "🚶" },
+          { target: "ví", speechText: "vờ i vi sắc ví", breakdown: [{ text: "vờ", color: "orange" }, { text: "i", color: "blue" }, { text: "sắc", color: "purple" }], result: { text: "ví", color: "red" }, icon: "👛" },
+          { target: "chỉ", speechText: "chờ i chi hỏi chỉ", breakdown: [{ text: "chờ", color: "orange" }, { text: "i", color: "blue" }, { text: "hỏi", color: "purple" }], result: { text: "chỉ", color: "red" }, icon: "🧵" }
+        ], 
+        examples: ["Bé đi đâu ?", "Bi có bi.", "Bé tập đi."] 
+      },
+      { 
+        id: 14, title: "Bài 13: Học chữ K k", subtitle: "HỌC CÙNG THỎ · Bài 13", type: "phonics", bigLetter: "K k", 
+        spelling: [
+          { target: "kem", speechText: "ca em kem", breakdown: [{ text: "ca", color: "orange" }, { text: "em", color: "blue" }], result: { text: "kem", color: "green" }, icon: "🍦" },
+          { target: "kéo", speechText: "ca eo keo sắc kéo", breakdown: [{ text: "ca", color: "orange" }, { text: "eo", color: "blue" }, { text: "sắc", color: "purple" }], result: { text: "kéo", color: "red" }, icon: "✂️" },
+          { target: "kẹo", speechText: "ca eo keo nặng kẹo", breakdown: [{ text: "ca", color: "orange" }, { text: "eo", color: "blue" }, { text: "nặng", color: "purple" }], result: { text: "kẹo", color: "red" }, icon: "🍬" },
+          { target: "kê", speechText: "ca ê kê", breakdown: [{ text: "ca", color: "orange" }, { text: "ê", color: "blue" }], result: { text: "kê", color: "green" }, icon: "🪑" },
+          { target: "kính", speechText: "ca inh kinh sắc kính", breakdown: [{ text: "ca", color: "orange" }, { text: "inh", color: "blue" }, { text: "sắc", color: "purple" }], result: { text: "kính", color: "red" }, icon: "👓" }
+        ], 
+        examples: ["Bé ăn kem.", "Mẹ kéo xe.", "Kia là cá."] 
+      },
+      { 
+        id: 15, title: "Bài 14: Học chữ L l", subtitle: "HỌC CÙNG THỎ · Bài 14", type: "phonics", bigLetter: "L l", 
+        spelling: [
+          { target: "lá", speechText: "lờ a la sắc lá", breakdown: [{ text: "lờ", color: "orange" }, { text: "a", color: "blue" }, { text: "sắc", color: "purple" }], result: { text: "lá", color: "red" }, icon: "🍃" },
+          { target: "ly", speechText: "lờ i ly", breakdown: [{ text: "lờ", color: "orange" }, { text: "y", color: "blue" }], result: { text: "ly", color: "green" }, icon: "🥛" },
+          { target: "lê", speechText: "lờ ê lê", breakdown: [{ text: "lờ", color: "orange" }, { text: "ê", color: "blue" }], result: { text: "lê", color: "green" }, icon: "🍐" },
+          { target: "lợn", speechText: "lờ ơn lơn nặng lợn", breakdown: [{ text: "lờ", color: "orange" }, { text: "ơn", color: "blue" }, { text: "nặng", color: "purple" }], result: { text: "lợn", color: "red" }, icon: "🐖" },
+          { target: "lửa", speechText: "lờ ưa lưa hỏi lửa", breakdown: [{ text: "lờ", color: "orange" }, { text: "ưa", color: "blue" }, { text: "hỏi", color: "purple" }], result: { text: "lửa", color: "red" }, icon: "🔥" }
+        ], 
+        examples: ["Lá xanh.", "Bé lau lá.", "Ly có nước."] 
+      },
+      { 
+        id: 16, title: "Bài 15: Học chữ M m", subtitle: "HỌC CÙNG THỎ · Bài 15", type: "phonics", bigLetter: "M m", 
+        spelling: [
+          { target: "mẹ", speechText: "mờ e me nặng mẹ", breakdown: [{ text: "mờ", color: "orange" }, { text: "e", color: "blue" }, { text: "nặng", color: "purple" }], result: { text: "mẹ", color: "red" }, icon: "👩" },
+          { target: "mèo", speechText: "mờ eo meo huyền mèo", breakdown: [{ text: "mờ", color: "orange" }, { text: "eo", color: "blue" }, { text: "huyền", color: "purple" }], result: { text: "mèo", color: "red" }, icon: "🐱" },
+          { target: "mũ", speechText: "mờ u mu ngã mũ", breakdown: [{ text: "mờ", color: "orange" }, { text: "u", color: "blue" }, { text: "ngã", color: "purple" }], result: { text: "mũ", color: "red" }, icon: "🧢" },
+          { target: "mưa", speechText: "mờ ưa mưa", breakdown: [{ text: "mờ", color: "orange" }, { text: "ưa", color: "blue" }], result: { text: "mưa", color: "green" }, icon: "🌧️" },
+          { target: "mối", speechText: "mờ ôi môi sắc mối", breakdown: [{ text: "mờ", color: "orange" }, { text: "ôi", color: "blue" },{ text: "môi", color: "orange" }, { text: "sắc", color: "purple" }], result: { text: "mối", color: "red" }, icon: "🐜" }
+        ], 
+        examples: ["Mẹ mua mèo.", "Mèo nằm.", "Bé ôm mẹ."] 
+      },
+      { 
+        id: 17, title: "Bài 16: Học chữ N n", subtitle: "HỌC CÙNG THỎ · Bài 16", type: "phonics", bigLetter: "N n", 
+        spelling: [
+          { target: "nỏ", speechText: "nờ o no hỏi nỏ", breakdown: [{ text: "nờ", color: "orange" }, { text: "o", color: "blue" }, { text: "hỏi", color: "purple" }], result: { text: "nỏ", color: "red" }, icon: "🏹" },
+          { target: "nón", speechText: "nờ on non sắc nón", breakdown: [{ text: "nờ", color: "orange" }, { text: "on", color: "blue" }, { text: "sắc", color: "purple" }], result: { text: "nón", color: "red" }, icon: "👒" },
+          { target: "nơ", speechText: "nờ ơ nơ", breakdown: [{ text: "nờ", color: "orange" }, { text: "ơ", color: "blue" }], result: { text: "nơ", color: "green" }, icon: "🎀" },
+          { target: "nước", speechText: "nờ ước nước sắc nước", breakdown: [{ text: "nờ", color: "orange" }, { text: "ước", color: "blue" }, { text: "sắc", color: "purple" }], result: { text: "nước", color: "red" }, icon: "💧" },
+          { target: "nấm", speechText: "nờ âm nâm sắc nấm", breakdown: [{ text: "nờ", color: "orange" }, { text: "âm", color: "blue" }, { text: "sắc", color: "purple" }], result: { text: "nấm", color: "red" }, icon: "🍄" }
+        ], 
+        examples: ["Nón màu xanh.", "Bé đội nón.", "Na ngon."] 
+      },
+      { 
+        id: 18, title: "Bài 17: Học chữ O o", subtitle: "HỌC CÙNG THỎ · Bài 17", type: "phonics", bigLetter: "O o", 
+        spelling: [
+          { target: "bò", speechText: "bờ o bo huyền bò", breakdown: [{ text: "bờ", color: "orange" }, { text: "o", color: "blue" }, { text: "huyền", color: "purple" }], result: { text: "bò", color: "red" }, icon: "🐄" },
+          { target: "cỏ", speechText: "cờ o co hỏi cỏ", breakdown: [{ text: "cờ", color: "orange" }, { text: "o", color: "blue" }, { text: "hỏi", color: "purple" }], result: { text: "cỏ", color: "red" }, icon: "🌿" },
+          { target: "cò", speechText: "cờ o co huyền cò", breakdown: [{ text: "cờ", color: "orange" }, { text: "o", color: "blue" }, { text: "huyền", color: "purple" }], result: { text: "cò", color: "red" }, icon: "🦩" },
+          { target: "thỏ", speechText: "thờ o tho hỏi thỏ", breakdown: [{ text: "thờ", color: "orange" }, { text: "o", color: "blue" }, { text: "hỏi", color: "purple" }], result: { text: "thỏ", color: "red" }, icon: "🐇" },
+          { target: "cho", speechText: "chờ o cho", breakdown: [{ text: "chờ", color: "orange" }, { text: "o", color: "blue" }], result: { text: "cho", color: "green" }, icon: "🎁" }
+        ], 
+        examples: ["Bé có kẹo.", "Bò ăn cỏ.", "Cô cho bé ô."] 
+      },
+      { 
+        id: 19, title: "Bài 18: Học chữ Ô ô", subtitle: "HỌC CÙNG THỎ · Bài 18", type: "phonics", bigLetter: "Ô ô", 
+        spelling: [
+          { target: "tô", speechText: "tờ ô tô", breakdown: [{ text: "tờ", color: "blue" },{ text: "ô", color: "orange" },{ text: "tô", color: "purple" }], icon: "🖍️" },
+          { target: "cô", speechText: "cờ ô cô", breakdown: [{ text: "cờ", color: "orange" }, { text: "ô", color: "blue" }], result: { text: "cô", color: "green" }, icon: "👩‍🏫" },
+          { target: "hổ", speechText: "hờ ô hô hỏi hổ", breakdown: [{ text: "hờ", color: "orange" }, { text: "ô", color: "blue" }, { text: "hỏi", color: "purple" }], result: { text: "hổ", color: "red" }, icon: "🐯" },
+          { target: "ô tô", speechText: "ô, tờ ô tô", breakdown: [{ text: "ô", color: "blue" }, { text: "tô", color: "green" }], icon: "🚘" },
+          { target: "bố", speechText: "bờ ô bô sắc bố", breakdown: [{ text: "bờ", color: "orange" }, { text: "ô", color: "blue" }, { text: "sắc", color: "purple" }], result: { text: "bố", color: "red" }, icon: "👨" }
+        ], 
+        examples: ["Cô có ô.", "Bé cầm ô.", "Ô màu đỏ."] 
+      },
+      { 
+        id: 20, title: "Bài 19: Học chữ Ơ ơ", subtitle: "HỌC CÙNG THỎ · Bài 19", type: "phonics", bigLetter: "Ơ ơ", 
+        spelling: [
+          { target: "ơ", speechText: "ơ", breakdown: [{ text: "ơ", color: "blue" }], icon: "😮" },
+          { target: "nơ", speechText: "nờ ơ nơ", breakdown: [{ text: "nờ", color: "orange" }, { text: "ơ", color: "blue" }], result: { text: "nơ", color: "green" }, icon: "🎀" },
+          { target: "bơ", speechText: "bờ ơ bơ", breakdown: [{ text: "bờ", color: "orange" }, { text: "ơ", color: "blue" }], result: { text: "bơ", color: "green" }, icon: "🥑" },
+          { target: "cờ", speechText: "cờ ơ cơ huyền cờ", breakdown: [{ text: "cờ", color: "orange" }, { text: "ơ", color: "blue" }, { text: "huyền", color: "purple" }], result: { text: "cờ", color: "red" }, icon: "🚩" },
+          { target: "chợ", speechText: "chờ ơ chơ nặng chợ", breakdown: [{ text: "chờ", color: "orange" }, { text: "ơ", color: "blue" }, { text: "nặng", color: "purple" }], result: { text: "chợ", color: "red" }, icon: "🏪" }
+        ], 
+        examples: ["Mẹ đi chợ.", "Bé ăn bơ.", "Lá cờ đỏ."] 
+      },
+      { 
+        id: 21, title: "Bài 20: Học chữ P p", subtitle: "HỌC CÙNG THỎ · Bài 20", type: "phonics", bigLetter: "P p", 
+        spelling: [
+          { target: "pin", speechText: "pờ in pin", breakdown: [{ text: "pờ", color: "orange" }, { text: "in", color: "blue" }], result: { text: "pin", color: "green" }, icon: "🔋" }
+        ], 
+        examples: ["Bé có pin.", "Đèn pin sáng.", "Pin ở đây."] 
+      },
+      { 
+        id: 22, title: "Bài 21: Học chữ Q q", subtitle: "HỌC CÙNG THỎ · Bài 21", type: "phonics", bigLetter: "Q q", 
+        spelling: [
+          { target: "quạ", speechText: "quy a qua nặng quạ", breakdown: [{ text: "quy", color: "orange" }, { text: "a", color: "blue" }, { text: "nặng", color: "purple" }], result: { text: "quạ", color: "red" }, icon: "🦅" },
+          { target: "quả", speechText: "quy a qua hỏi quả", breakdown: [{ text: "quy", color: "orange" }, { text: "a", color: "blue" }, { text: "hỏi", color: "purple" }], result: { text: "quả", color: "red" }, icon: "🍎" },
+          { target: "quạt", speechText: "quy uát quát nặng quạt", breakdown: [{ text: "quy", color: "orange" }, { text: "uát", color: "blue" }, { text: "nặng", color: "purple" }], result: { text: "quạt", color: "red" }, icon: "🪭" },
+          { target: "quần", speechText: "quy uân quân huyền quần", breakdown: [{ text: "quy", color: "orange" }, { text: "uân", color: "blue" }, { text: "huyền", color: "purple" }], result: { text: "quần", color: "red" }, icon: "👖" },
+          { target: "que", speechText: "quy e que", breakdown: [{ text: "quy", color: "orange" }, { text: "e", color: "blue" }], result: { text: "que", color: "green" }, icon: "🥢" }
+        ], 
+        examples: ["Quạ đậu cây.", "Quả cam ngon.", "Bé hái quả."] 
+      },
+      { 
+        id: 23, title: "Bài 22: Học chữ R r", subtitle: "HỌC CÙNG THỎ · Bài 22", type: "phonics", bigLetter: "R r", 
+        spelling: [
+          { target: "rắn", speechText: "rờ ăn răn sắc rắn", breakdown: [{ text: "rờ", color: "orange" }, { text: "ăn", color: "blue" }, { text: "sắc", color: "purple" }], result: { text: "rắn", color: "red" }, icon: "🐍" },
+          { target: "rùa", speechText: "rờ ua rua huyền rùa", breakdown: [{ text: "rờ", color: "orange" }, { text: "ua", color: "blue" }, { text: "huyền", color: "purple" }], result: { text: "rùa", color: "red" }, icon: "🐢" },
+          { target: "răng", speechText: "rờ ăng răng", breakdown: [{ text: "rờ", color: "orange" }, { text: "ăng", color: "blue" }], result: { text: "răng", color: "green" }, icon: "🦷" },
+          { target: "rổ", speechText: "rờ ô rô hỏi rổ", breakdown: [{ text: "rờ", color: "orange" }, { text: "ô", color: "blue" }, { text: "hỏi", color: "purple" }], result: { text: "rổ", color: "red" }, icon: "🧺" },
+          { target: "rơm", speechText: "rờ ơm rơm", breakdown: [{ text: "rờ", color: "orange" }, { text: "ơm", color: "blue" }], result: { text: "rơm", color: "green" }, icon: "🌾" }
+        ], 
+        examples: ["Rùa bò.", "Bé nhìn rùa.", "Rắn bò."] 
+      },
+      { 
+        id: 24, title: "Bài 23: Học chữ S s", subtitle: "HỌC CÙNG THỎ · Bài 23", type: "phonics", bigLetter: "S s", 
+        spelling: [
+          { target: "sóc", speechText: "sờ óc sóc sắc sóc", breakdown: [{ text: "sờ", color: "orange" }, { text: "óc", color: "blue" }, { text: "sắc", color: "purple" }], result: { text: "sóc", color: "red" }, icon: "🐿️" },
+          { target: "sao", speechText: "sờ ao sao", breakdown: [{ text: "sờ", color: "orange" }, { text: "ao", color: "blue" }], result: { text: "sao", color: "green" }, icon: "⭐" },
+          { target: "sách", speechText: "sờ ách sách sắc sách", breakdown: [{ text: "sờ", color: "orange" }, { text: "ach", color: "blue" }, { text: "sắc", color: "purple" }], result: { text: "sách", color: "red" }, icon: "📚" },
+          { target: "sông", speechText: "sờ ông sông", breakdown: [{ text: "sờ", color: "orange" }, { text: "ông", color: "blue" }], result: { text: "sông", color: "green" }, icon: "🏞️" },
+          { target: "sữa", speechText: "sờ ưa sưa ngã sữa", breakdown: [{ text: "sờ", color: "orange" }, { text: "ưa", color: "blue" }, { text: "ngã", color: "purple" }], result: { text: "sữa", color: "red" }, icon: "🥛" }
+        ], 
+        examples: ["Sóc ăn hạt.", "Bé thấy sóc.", "Sao sáng."] 
+      },
+      { 
+        id: 25, title: "Bài 24: Học chữ T t", subtitle: "HỌC CÙNG THỎ · Bài 24", type: "phonics", bigLetter: "T t", 
+        spelling: [
+          { target: "táo", speechText: "tờ ao tao sắc táo", breakdown: [{ text: "tờ", color: "orange" }, { text: "ao", color: "blue" }, { text: "sắc", color: "purple" }], result: { text: "táo", color: "red" }, icon: "🍎" },
+          { target: "ti", speechText: "tờ i ti", breakdown: [{ text: "tờ", color: "orange" }, { text: "i", color: "blue" }], result: { text: "ti", color: "green" }, icon: "🍼" },
+          { target: "tàu", speechText: "tờ au tau huyền tàu", breakdown: [{ text: "tờ", color: "orange" }, { text: "au", color: "blue" }, { text: "huyền", color: "purple" }], result: { text: "tàu", color: "red" }, icon: "🚆" },
+          { target: "túi", speechText: "tờ ui tui sắc túi", breakdown: [{ text: "tờ", color: "orange" }, { text: "ui", color: "blue" }, { text: "sắc", color: "purple" }], result: { text: "túi", color: "red" }, icon: "🎒" },
+          { target: "tôm", speechText: "tờ ôm tôm", breakdown: [{ text: "tờ", color: "orange" }, { text: "ôm", color: "blue" }], result: { text: "tôm", color: "green" }, icon: "🦐" }
+        ], 
+        examples: ["Bé ăn táo.", "Tú có túi.", "Tàu chạy."] 
+      },
+      { 
+        id: 26, title: "Bài 25: Học chữ U u", subtitle: "HỌC CÙNG THỎ · Bài 25", type: "phonics", bigLetter: "U u", 
+        spelling: [
+          { target: "u", speechText: "u", breakdown: [{ text: "u", color: "blue" }], icon: "👵" },
+          { target: "dù", speechText: "dờ u du huyền dù", breakdown: [{ text: "dờ", color: "orange" }, { text: "u", color: "blue" }, { text: "huyền", color: "purple" }], result: { text: "dù", color: "red" }, icon: "☂️" },
+          { target: "mũ", speechText: "mờ u mu ngã mũ", breakdown: [{ text: "mờ", color: "orange" }, { text: "u", color: "blue" }, { text: "ngã", color: "purple" }], result: { text: "mũ", color: "red" }, icon: "🧢" },
+          { target: "tủ", speechText: "tờ u tu hỏi tủ", breakdown: [{ text: "tờ", color: "orange" }, { text: "u", color: "blue" }, { text: "hỏi", color: "purple" }], result: { text: "tủ", color: "red" }, icon: "🚪" },
+          { target: "cú", speechText: "cờ u cu sắc cú", breakdown: [{ text: "cờ", color: "orange" }, { text: "u", color: "blue" }, { text: "sắc", color: "purple" }], result: { text: "cú", color: "red" }, icon: "🦉" }
+        ], 
+        examples: ["Bé có dù.", "Dù màu đỏ.", "Mẹ mua dù."] 
+      },
+      { 
+        id: 27, title: "Bài 26: Học chữ Ư ư", subtitle: "HỌC CÙNG THỎ · Bài 26", type: "phonics", bigLetter: "Ư ư", 
+        spelling: [
+          { target: "ư", speechText: "ư", breakdown: [{ text: "ư", color: "blue" }], icon: "😮" },
+          { target: "thư", speechText: "thờ ư thư", breakdown: [{ text: "thờ", color: "orange" }, { text: "ư", color: "blue" }], result: { text: "thư", color: "green" }, icon: "✉️" },
+          { target: "sư tử", speechText: "sờ ư sư, tờ ư tư hỏi tử", breakdown: [{ text: "sư", color: "green" }, { text: "tử", color: "red" }], icon: "🦁" },
+          { target: "dưa", speechText: "dờ ưa dưa", breakdown: [{ text: "dờ", color: "orange" }, { text: "ưa", color: "blue" }], result: { text: "dưa", color: "green" }, icon: "🍉" },
+          { target: "mưa", speechText: "mờ ưa mưa", breakdown: [{ text: "mờ", color: "orange" }, { text: "ưa", color: "blue" }], result: { text: "mưa", color: "green" }, icon: "🌧️" }
+        ], 
+        examples: ["Bé đọc thư.", "Thư của mẹ.", "Bé đưa thư."] 
+      },
+      { 
+        id: 28, title: "Bài 27: Học chữ V v", subtitle: "HỌC CÙNG THỎ · Bài 27", type: "phonics", bigLetter: "V v", 
+        spelling: [
+          { target: "voi", speechText: "vờ oi voi", breakdown: [{ text: "vờ", color: "orange" }, { text: "oi", color: "blue" }], result: { text: "voi", color: "green" }, icon: "🐘" },
+          { target: "vịt", speechText: "vờ ít vít nặng vịt", breakdown: [{ text: "vờ", color: "orange" }, { text: "it", color: "blue" }, { text: "nặng", color: "purple" }], result: { text: "vịt", color: "red" }, icon: "🦆" },
+          { target: "vở", speechText: "vờ ơ vơ hỏi vở", breakdown: [{ text: "vờ", color: "orange" }, { text: "ơ", color: "blue" }, { text: "hỏi", color: "purple" }], result: { text: "vở", color: "red" }, icon: "📓" },
+          { target: "vua", speechText: "vờ ua vua", breakdown: [{ text: "vờ", color: "orange" }, { text: "ua", color: "blue" }], result: { text: "vua", color: "green" }, icon: "👑" },
+          { target: "vé", speechText: "vờ e ve sắc vé", breakdown: [{ text: "vờ", color: "orange" }, { text: "e", color: "blue" }, { text: "sắc", color: "purple" }], result: { text: "vé", color: "red" }, icon: "🎟️" }
+        ], 
+        examples: ["Bé thấy voi.", "Vịt bơi.", "Voi có vòi."] 
+      },
+      { 
+        id: 29, title: "Bài 28: Học chữ X x", subtitle: "HỌC CÙNG THỎ · Bài 28", type: "phonics", bigLetter: "X x", 
+        spelling: [
+          { target: "xe", speechText: "xờ e xe", breakdown: [{ text: "xờ", color: "orange" }, { text: "e", color: "blue" }], result: { text: "xe", color: "green" }, icon: "🚗" },
+          { target: "xôi", speechText: "xờ ôi xôi", breakdown: [{ text: "xờ", color: "orange" }, { text: "ôi", color: "blue" }], result: { text: "xôi", color: "green" }, icon: "🍚" },
+          { target: "xoài", speechText: "xờ oai xoai huyền xoài", breakdown: [{ text: "xờ", color: "orange" }, { text: "oai", color: "blue" }, { text: "huyền", color: "purple" }], result: { text: "xoài", color: "red" }, icon: "🥭" },
+          { target: "xô", speechText: "xờ ô xô", breakdown: [{ text: "xờ", color: "orange" }, { text: "ô", color: "blue" }], result: { text: "xô", color: "green" }, icon: "🪣" },
+          { target: "xương", speechText: "xờ ương xương", breakdown: [{ text: "xờ", color: "orange" }, { text: "ương", color: "blue" }], result: { text: "xương", color: "green" }, icon: "🦴" }
+        ], 
+        examples: ["Bé đi xe.", "Xe màu xanh.", "Bé ăn xôi."] 
+      },
+      { 
+        id: 30, title: "Bài 29: Học chữ Y y", subtitle: "HỌC CÙNG THỎ · Bài 29", type: "phonics", bigLetter: "Y y", 
+        spelling: [
+          { target: "y", speechText: "i", breakdown: [{ text: "y", color: "blue" }], icon: "🅰️" },
+          { target: "yên", speechText: "i ê nờ yên", breakdown: [{ text: "yên", color: "blue" }], result: { text: "yên", color: "green" }, icon: "🏇" },
+          { target: "yến", speechText: "i ê nờ yên sắc yến", breakdown: [{ text: "yên", color: "blue" }, { text: "sắc", color: "purple" }], result: { text: "yến", color: "red" }, icon: "🐦" },
+          { target: "y tế", speechText: "y, tờ ê tê sắc tế", breakdown: [{ text: "y", color: "blue" }, { text: "tế", color: "red" }], icon: "🏥" },
+          { target: "yêu", speechText: "i ê u yêu", breakdown: [{ text: "yêu", color: "green" }], icon: "❤️" }
+        ], 
+        examples: ["Bé yêu mẹ.", "Yến bay.", "Yên ngựa ở đây."] 
+      },
+      // Các bài chữ ghép chuyển về cuối
+      { 
+        id: 31, title: "Bài 30: Học chữ Ch ch", subtitle: "HỌC CÙNG THỎ · Bài 30", type: "phonics", bigLetter: "Ch ch", 
+        spelling: [
+          { target: "cha", speechText: "chờ a cha", breakdown: [{ text: "chờ", color: "orange" }, { text: "a", color: "blue" }], result: { text: "cha", color: "green" }, icon: "👨" },
+          { target: "chợ", speechText: "chờ ơ chơ nặng chợ", breakdown: [{ text: "chờ", color: "orange" }, { text: "ơ", color: "blue" }, { text: "nặng", color: "purple" }], result: { text: "chợ", color: "red" }, icon: "🏪" },
+          { target: "chú", speechText: "chờ u chu sắc chú", breakdown: [{ text: "chờ", color: "orange" }, { text: "u", color: "blue" }, { text: "sắc", color: "purple" }], result: { text: "chú", color: "red" }, icon: "👨‍🦰" },
+          { target: "che", speechText: "chờ e che", breakdown: [{ text: "chờ", color: "orange" }, { text: "e", color: "blue" }], result: { text: "che", color: "green" }, icon: "☂️" },
+          { target: "chó", speechText: "chờ o cho sắc chó", breakdown: [{ text: "chờ", color: "orange" }, { text: "o", color: "blue" }, { text: "sắc", color: "purple" }], result: { text: "chó", color: "red" }, icon: "🐕" }
+        ], 
+        examples: ["Bé vẽ tranh.", "Chó sủa vang.", "Bà đi chợ."] 
+      },
+      { 
+        id: 32, title: "Bài 31: Học chữ Gh gh", subtitle: "HỌC CÙNG THỎ · Bài 31", type: "phonics", bigLetter: "Gh gh", 
+        spelling: [
+          { target: "ghế", speechText: "ghờ ê ghê sắc ghế", breakdown: [{ text: "ghờ", color: "orange" }, { text: "ê", color: "blue" }, { text: "sắc", color: "purple" }], result: { text: "ghế", color: "red" }, icon: "🪑" },
+          { target: "ghẹ", speechText: "ghờ e ghe nặng ghẹ", breakdown: [{ text: "ghờ", color: "orange" }, { text: "e", color: "blue" }, { text: "nặng", color: "purple" }], result: { text: "ghẹ", color: "red" }, icon: "🦀" },
+          { target: "ghi", speechText: "ghờ i ghi", breakdown: [{ text: "ghờ", color: "orange" }, { text: "i", color: "blue" }], result: { text: "ghi", color: "green" }, icon: "✍️" },
+          { target: "ghé", speechText: "ghờ e ghe sắc ghé", breakdown: [{ text: "ghờ", color: "orange" }, { text: "e", color: "blue" }, { text: "sắc", color: "purple" }], result: { text: "ghé", color: "red" }, icon: "👀" },
+          { target: "ghim", speechText: "ghờ im ghim", breakdown: [{ text: "ghờ", color: "orange" }, { text: "im", color: "blue" }], result: { text: "ghim", color: "green" }, icon: "📌" }
+        ], 
+        examples: ["Bé ngồi ghế.", "Mẹ mua ghẹ.", "Bé ghi bài."] 
+      },
+      { 
+        id: 33, title: "Bài 32: Học chữ Gi gi", subtitle: "HỌC CÙNG THỎ · Bài 32", type: "phonics", bigLetter: "Gi gi", 
+        spelling: [
+          { target: "gì", speechText: "di i di huyền gì", breakdown: [{ text: "gi", color: "orange" }, { text: "i", color: "blue" }, { text: "huyền", color: "purple" }], result: { text: "gì", color: "red" }, icon: "❓" },
+          { target: "gia", speechText: "di a gia", breakdown: [{ text: "gi", color: "orange" }, { text: "a", color: "blue" }], result: { text: "gia", color: "green" }, icon: "🏡" },
+          { target: "gió", speechText: "di o do sắc gió", breakdown: [{ text: "gi", color: "orange" }, { text: "o", color: "blue" }, { text: "sắc", color: "purple" }], result: { text: "gió", color: "red" }, icon: " gió " },
+          { target: "giày", speechText: "di ay giay huyền giày", breakdown: [{ text: "gi", color: "orange" }, { text: "ay", color: "blue" }, { text: "huyền", color: "purple" }], result: { text: "giày", color: "red" }, icon: "👟" },
+          { target: "giỏ", speechText: "di o gio hỏi giỏ", breakdown: [{ text: "gi", color: "orange" }, { text: "o", color: "blue" }, { text: "hỏi", color: "purple" }], result: { text: "giỏ", color: "red" }, icon: "🧺" }
+        ], 
+        examples: ["Gió thổi mạnh.", "Bà mua giày.", "Giỏ có cá."] 
+      },
+      { 
+        id: 34, title: "Bài 33: Học chữ Kh kh", subtitle: "HỌC CÙNG THỎ · Bài 33", type: "phonics", bigLetter: "Kh kh", 
+        spelling: [
+          { target: "khế", speechText: "khờ ê khê sắc khế", breakdown: [{ text: "khờ", color: "orange" }, { text: "ê", color: "blue" }, { text: "sắc", color: "purple" }], result: { text: "khế", color: "red" }, icon: "⭐" },
+          { target: "khi", speechText: "khờ i khi", breakdown: [{ text: "khờ", color: "orange" }, { text: "i", color: "blue" }], result: { text: "khi", color: "green" }, icon: "⏰" },
+          { target: "kho", speechText: "khờ o kho", breakdown: [{ text: "khờ", color: "orange" }, { text: "o", color: "blue" }], result: { text: "kho", color: "green" }, icon: "🏠" },
+          { target: "khăn", speechText: "khờ ăn khăn", breakdown: [{ text: "khờ", color: "orange" }, { text: "ăn", color: "blue" }], result: { text: "khăn", color: "green" }, icon: "🧣" },
+          { target: "khỉ", speechText: "khờ i khi hỏi khỉ", breakdown: [{ text: "khờ", color: "orange" }, { text: "i", color: "blue" }, { text: "hỏi", color: "purple" }], result: { text: "khỉ", color: "red" }, icon: "🐒" }
+        ], 
+        examples: ["Bé ăn khế.", "Khỉ leo cây.", "Mẹ mua khăn."] 
+      },
+      { 
+        id: 35, title: "Bài 34: Học chữ Ng ng", subtitle: "HỌC CÙNG THỎ · Bài 34", type: "phonics", bigLetter: "Ng ng", 
+        spelling: [
+          { target: "nga", speechText: "ngờ a nga", breakdown: [{ text: "ngờ", color: "orange" }, { text: "a", color: "blue" }], result: { text: "nga", color: "green" }, icon: "🦢" },
+          { target: "ngựa", speechText: "ngờ ưa ngưa nặng ngựa", breakdown: [{ text: "ngờ", color: "orange" }, { text: "ưa", color: "blue" }, { text: "nặng", color: "purple" }], result: { text: "ngựa", color: "red" }, icon: "🐎" },
+          { target: "ngủ", speechText: "ngờ u ngu hỏi ngủ", breakdown: [{ text: "ngờ", color: "orange" }, { text: "u", color: "blue" }, { text: "hỏi", color: "purple" }], result: { text: "ngủ", color: "red" }, icon: "😴" },
+          { target: "ngòi", speechText: "ngờ oi ngoi huyền ngòi", breakdown: [{ text: "ngờ", color: "orange" }, { text: "oi", color: "blue" }, { text: "huyền", color: "purple" }], result: { text: "ngòi", color: "red" }, icon: "✒️" },
+          { target: "ngô", speechText: "ngờ ô ngô", breakdown: [{ text: "ngờ", color: "orange" }, { text: "ô", color: "blue" }], result: { text: "ngô", color: "green" }, icon: "🌽" }
+        ], 
+        examples: ["Ngựa chạy nhanh.", "Bé đi ngủ.", "Bà luộc ngô."] 
+      },
+      { 
+        id: 36, title: "Bài 35: Học chữ Ngh ngh", subtitle: "HỌC CÙNG THỎ · Bài 35", type: "phonics", bigLetter: "Ngh ngh", 
+        spelling: [
+          { target: "nghé", speechText: "nghờ e nghe sắc nghé", breakdown: [{ text: "ngờ", color: "orange" }, { text: "ê", color: "blue" }, { text: "sắc", color: "purple" }], result: { text: "nghé", color: "red" }, icon: "🐃" },
+          { target: "nghỉ", speechText: "nghờ i nghi hỏi nghỉ", breakdown: [{ text: "ngờ", color: "orange" }, { text: "i", color: "blue" }, { text: "hỏi", color: "purple" }], result: { text: "nghỉ", color: "red" }, icon: "🏖️" },
+          { target: "nghĩa", speechText: "nghờ ia nghia ngã nghĩa", breakdown: [{ text: "ngờ", color: "orange" }, { text: "ia", color: "blue" }, { text: "ngã", color: "purple" }], result: { text: "nghĩa", color: "red" }, icon: "📖" },
+          { target: "nghèo", speechText: "nghờ eo ngheo huyền nghèo", breakdown: [{ text: "ngờ", color: "orange" }, { text: "eo", color: "blue" }, { text: "huyền", color: "purple" }], result: { text: "nghèo", color: "red" }, icon: "🤝" },
+          { target: "nghệ", speechText: "ngờ ê nghê nặng nghệ", breakdown: [{ text: "ngờ", color: "orange" }, { text: "ê", color: "blue" }, { text: "nặng", color: "purple" }], result: { text: "nghệ", color: "red" }, icon: "🌿" }
+        ], 
+        examples: ["Con nghé con.", "Bé được nghỉ học.", "Bà trồng nghệ."] 
+      },
+      { 
+        id: 37, title: "Bài 36: Học chữ Nh nh", subtitle: "HỌC CÙNG THỎ · Bài 36", type: "phonics", bigLetter: "Nh nh", 
+        spelling: [
+          { target: "nhà", speechText: "nhờ a nha huyền nhà", breakdown: [{ text: "nhờ", color: "orange" }, { text: "a", color: "blue" }, { text: "huyền", color: "purple" }], result: { text: "nhà", color: "red" }, icon: "🏠" },
+          { target: "nhỏ", speechText: "nhờ o nho hỏi nhỏ", breakdown: [{ text: "nhờ", color: "orange" }, { text: "o", color: "blue" }, { text: "hỏi", color: "purple" }], result: { text: "nhỏ", color: "red" }, icon: "👶" },
+          { target: "nhãn", speechText: "nhờ an nhan ngã nhãn", breakdown: [{ text: "nhờ", color: "orange" }, { text: "an", color: "blue" }, { text: "ngã", color: "purple" }], result: { text: "nhãn", color: "red" }, icon: "🍈" },
+          { target: "nho", speechText: "nhờ o nho", breakdown: [{ text: "nhờ", color: "orange" }, { text: "o", color: "blue" }], result: { text: "nho", color: "green" }, icon: "🍇" },
+          { target: "nhạc", speechText: "nhờ ác nhác nặng nhạc", breakdown: [{ text: "nhờ", color: "orange" }, { text: "ác", color: "blue" }, { text: "nặng", color: "purple" }], result: { text: "nhạc", color: "red" }, icon: "🎵" }
+        ], 
+        examples: ["Nhà bé đẹp.", "Bé thích ăn nho.", "Mẹ nghe nhạc."] 
+      },
+      { 
+        id: 38, title: "Bài 37: Học chữ Ph ph", subtitle: "HỌC CÙNG THỎ · Bài 37", type: "phonics", bigLetter: "Ph ph", 
+        spelling: [
+          { target: "phở", speechText: "phờ ơ phơ hỏi phở", breakdown: [{ text: "phờ", color: "orange" }, { text: "ơ", color: "blue" }, { text: "hỏi", color: "purple" }], result: { text: "phở", color: "red" }, icon: "🍜" },
+          { target: "phố", speechText: "phờ ô phô sắc phố", breakdown: [{ text: "phờ", color: "orange" }, { text: "ô", color: "blue" }, { text: "sắc", color: "purple" }], result: { text: "phố", color: "red" }, icon: "🏙️" },
+          { target: "phim", speechText: "phờ im phim", breakdown: [{ text: "phờ", color: "orange" }, { text: "im", color: "blue" }], result: { text: "phim", color: "green" }, icon: "🎬" },
+          { target: "pha", speechText: "phờ a pha", breakdown: [{ text: "phờ", color: "orange" }, { text: "a", color: "blue" }], result: { text: "pha", color: "green" }, icon: "☕" },
+          { target: "pháp", speechText: "phờ áp pháp sắc pháp", breakdown: [{ text: "phờ", color: "orange" }, { text: "áp", color: "blue" }, { text: "sắc", color: "purple" }], result: { text: "pháp", color: "red" }, icon: "📜" }
+        ], 
+        examples: ["Bố ăn phở.", "Phố đông vui.", "Mẹ pha trà."] 
+      },
+      { 
+        id: 39, title: "Bài 38: Học chữ Th th", subtitle: "HỌC CÙNG THỎ · Bài 38", type: "phonics", bigLetter: "Th th", 
+        spelling: [
+          { target: "thỏ", speechText: "thờ o tho hỏi thỏ", breakdown: [{ text: "thờ", color: "orange" }, { text: "o", color: "blue" }, { text: "hỏi", color: "purple" }], result: { text: "thỏ", color: "red" }, icon: "🐇" },
+          { target: "thuyền", speechText: "thờ uyên thuyên huyền thuyền", breakdown: [{ text: "thờ", color: "orange" }, { text: "uyên", color: "blue" }, { text: "huyền", color: "purple" }], result: { text: "thuyền", color: "red" }, icon: "⛵" },
+          { target: "thìa", speechText: "thờ ia thia huyền thìa", breakdown: [{ text: "thờ", color: "orange" }, { text: "ia", color: "blue" }, { text: "huyền", color: "purple" }], result: { text: "thìa", color: "red" }, icon: "🥄" },
+          { target: "thơ", speechText: "thờ ơ thơ", breakdown: [{ text: "thờ", color: "orange" }, { text: "ơ", color: "blue" }], result: { text: "thơ", color: "green" }, icon: "📖" },
+          { target: "thịt", speechText: "thờ ít thít nặng thịt", breakdown: [{ text: "thờ", color: "orange" }, { text: "ít", color: "blue" }, { text: "nặng", color: "purple" }], result: { text: "thịt", color: "red" }, icon: "🥩" }
+        ], 
+        examples: ["Thỏ ăn cỏ.", "Thuyền trên sông.", "Bé đọc thơ."] 
+      },
+      { 
+        id: 40, title: "Bài 39: Học chữ Tr tr", subtitle: "HỌC CÙNG THỎ · Bài 39", type: "phonics", bigLetter: "Tr tr", 
+        spelling: [
+          { target: "trà", speechText: "trờ a tra huyền trà", breakdown: [{ text: "trờ", color: "orange" }, { text: "a", color: "blue" }, { text: "huyền", color: "purple" }], result: { text: "trà", color: "red" }, icon: "🍵" },
+          { target: "tre", speechText: "trờ e tre", breakdown: [{ text: "trờ", color: "orange" }, { text: "e", color: "blue" }], result: { text: "tre", color: "green" }, icon: "🎋" },
+          { target: "trứng", speechText: "trờ ưng trưng sắc trứng", breakdown: [{ text: "trờ", color: "orange" }, { text: "ưng", color: "blue" }, { text: "sắc", color: "purple" }], result: { text: "trứng", color: "red" }, icon: "🥚" },
+          { target: "tranh", speechText: "trờ anh tranh", breakdown: [{ text: "trờ", color: "orange" }, { text: "anh", color: "blue" }], result: { text: "tranh", color: "green" }, icon: "🖼️" },
+          { target: "trời", speechText: "trờ ơi trơi huyền trời", breakdown: [{ text: "trờ", color: "orange" }, { text: "ơi", color: "blue" }, { text: "huyền", color: "purple" }], result: { text: "trời", color: "red" }, icon: "☀️" }
+        ], 
+        examples: ["Bà uống trà.", "Cây tre xanh.", "Trời có mây."] 
+      }
+    ];
+
+    let currentLessonIdx = 0;
+    let speechSpeed = 1.0;
+    let selectedVoice = null;
+    let displayMode = 'all'; // 'all', 'spelling', 'reading'
+
+    function loadFemaleVoice() {
+      if (!('speechSynthesis' in window)) return;
+      const voices = window.speechSynthesis.getVoices();
+      const viVoices = voices.filter(v => v.lang.startsWith('vi'));
+
+      if (viVoices.length > 0) {
+        selectedVoice = viVoices.find(v => 
+          v.name.toLowerCase().includes('female') || 
+          v.name.toLowerCase().includes('hoaimy') || 
+          v.name.toLowerCase().includes('linh') || 
+          v.name.toLowerCase().includes('mai') || 
+          v.name.toLowerCase().includes('nữ')
+        ) || viVoices[0];
+      }
+    }
+
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.onvoiceschanged = loadFemaleVoice;
+      loadFemaleVoice();
+    }
+
+    function getVietnamesePronunciation(text) {
+      const cleanText = text.trim();
+      if (vietnamesePhonetics[cleanText]) {
+        return vietnamesePhonetics[cleanText];
+      }
+      if (vietnamesePhonetics[cleanText.toLowerCase()]) {
+        return vietnamesePhonetics[cleanText.toLowerCase()];
+      }
+      return text;
+    }
+
+    function speak(text, element = null) {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+
+        const spokenText = getVietnamesePronunciation(text);
+        const utterance = new SpeechSynthesisUtterance(spokenText);
+        utterance.lang = 'vi-VN';
+        utterance.rate = speechSpeed;
+        utterance.pitch = 1.1;
+
+        if (selectedVoice) {
+          utterance.voice = selectedVoice;
+        }
+
+        if (element) {
+          element.classList.add('speaking');
+          utterance.onend = () => element.classList.remove('speaking');
+          utterance.onerror = () => element.classList.remove('speaking');
+        }
+
+        window.speechSynthesis.speak(utterance);
+      }
+    }
+
+    function toggleSpeed() {
+      if (speechSpeed === 1.0) speechSpeed = 0.75;
+      else if (speechSpeed === 0.75) speechSpeed = 0.5;
+      else speechSpeed = 1.0;
+
+      document.getElementById('speedToggle').innerText = speechSpeed + 'x';
+    }
+
+    function openSettingsModal() {
+      updateSettingsUI();
+      document.getElementById('settingsModal').classList.add('active');
+    }
+
+    function closeSettingsModal() {
+      document.getElementById('settingsModal').classList.remove('active');
+    }
+
+    function setMode(mode) {
+      displayMode = mode;
+      updateSettingsUI();
+      renderContent();
+    }
+
+    function updateSettingsUI() {
+      ['all', 'spelling', 'reading'].forEach(mode => {
+        const opt = document.getElementById(`opt-${mode}`);
+        const radio = opt.querySelector('input');
+        if (mode === displayMode) {
+          opt.classList.add('active');
+          radio.checked = true;
+        } else {
+          opt.classList.remove('active');
+          radio.checked = false;
+        }
+      });
+    }
+
+    function renderLessonSelector() {
+      const select = document.getElementById('lessonSelect');
+      select.innerHTML = '';
+      lessonsData.forEach((lesson, index) => {
+        const option = document.createElement('option');
+        option.value = index;
+        option.text = index === 0 ? "Bài tổng hợp: Bảng chữ cái" : `${lesson.title}`;
+        if (index === currentLessonIdx) {
+          option.selected = true;
+        }
+        select.appendChild(option);
+      });
+    }
+
+    function selectLessonFromDropdown(index) {
+      selectLesson(parseInt(index));
+    }
+
+    function selectLesson(index) {
+      currentLessonIdx = index;
+      renderLessonSelector();
+      renderContent();
+      updateNavButtons();
+    }
+
+    function changeLesson(step) {
+      const newIdx = currentLessonIdx + step;
+      if (newIdx >= 0 && newIdx < lessonsData.length) {
+        selectLesson(newIdx);
+      }
+    }
+
+    function updateNavButtons() {
+      document.getElementById('prevBtn').disabled = currentLessonIdx === 0;
+      document.getElementById('nextBtn').disabled = currentLessonIdx === lessonsData.length - 1;
+    }
+
+    function renderContent() {
+      const lesson = lessonsData[currentLessonIdx];
+      const container = document.getElementById('mainContent');
+
+      let html = `
+        <div class="header-info">
+          <div class="subtitle">${lesson.subtitle}</div>
+          <div class="title-row">
+            <h1 class="main-title">${lesson.title}</h1>
+            <img class="mascot" src="tho.jpg" alt="Con thỏ">
+          </div>
+          <div class="title-divider"></div>
+        </div>
+      `;
+
+      if (lesson.type === 'alphabet') {
+        html += `
+          <div class="alphabet-grid">
+            ${alphabetList.map(item => `
+              <div class="alphabet-card" onclick="speak('${item.split(' ')[0]}', this)">
+                ${item}
+              </div>
+            `).join('')}
+          </div>
+        `;
+      } else {
+        html += `
+          <div class="big-letter-card" onclick="speak('${lesson.bigLetter.split(' ')[0]}', this)">
+            <div class="big-letter-text">${lesson.bigLetter}</div>
+          </div>
+        `;
+
+        // Học đánh vần
+        if (displayMode === 'all' || displayMode === 'spelling') {
+          html += `
+            <div class="section-badge" onclick="speak('Học đánh vần')">
+              <span class="icon">abc</span> Học đánh vần 🔊
+            </div>
+
+            <div class="phonics-section">
+              ${lesson.spelling.map(item => `
+                <div class="spelling-card">
+                  <div class="left-target-word" onclick="speak('${item.target}', this)">
+                    ${item.target}
+                  </div>
+                  <div class="right-breakdown-box" onclick="speak('${item.speechText}', this)">
+                    <div class="breakdown-row">
+                      ${item.breakdown.map(b => `<span class="capsule ${b.color}">${b.text}</span>`).join('')}
+                      ${item.result ? `<span class="capsule ${item.result.color}">${item.result.text}</span>` : ''}
+                    </div>
+                    <div class="right-icon-group">
+                      <span class="word-icon">${item.icon || '📌'}</span>
+                      <span class="speaker-icon">🔊</span>
+                    </div>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          `;
+        }
+
+        // Tập đọc
+        if (displayMode === 'all' || displayMode === 'reading') {
+          html += `
+            <div class="section-badge" onclick="speak('Tập đọc')">
+              📖 Tập đọc 🔊
+            </div>
+
+            <div class="example-grid">
+              ${lesson.examples.slice(0, 3).map(word => `
+                <div class="word-card" onclick="speak('${word}', this)">
+                  ${word}
+                </div>
+              `).join('')}
+            </div>
+          `;
+        }
+      }
+
+      container.innerHTML = html;
+    }
+
+    window.onload = () => {
+      loadFemaleVoice();
+      renderLessonSelector();
+      renderContent();
+      updateNavButtons();
+    };
+  </script>
+</body>
+</html>
+```[cite: 4]
